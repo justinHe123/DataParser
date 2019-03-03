@@ -3,11 +3,8 @@ public class ElectionResult {
     private String stateAbbr, countyName, combinedFips;
 
     public ElectionResult(String line) {
-        int index = line.indexOf("\"");
-        if (line.contains("\"")) {
-            line = this.removeComma(line, index);
-            line = line.replace("\"", "");
-        }
+        line = this.removeComma(line);
+        line = line.replace("\"", "");
         String[] vals = line.split(",");
         demVotes = Double.parseDouble(vals[1]);
         gopVotes = Double.parseDouble(vals[2]);
@@ -21,14 +18,27 @@ public class ElectionResult {
         combinedFips = vals[10];
     }
 
-    private String removeComma(String line, int startIndex) {
-        int maxIndex = line.indexOf("\"", startIndex + 1);
-        int index = line.indexOf(",", startIndex);
-        if (index < maxIndex && index != -1) {
-            line = line.substring(0, index) + line.substring(index + 1, line.length());
-            line = removeComma(line, index);
+//    VER 1: Requires initial input of the first quotation mark index
+//    private String removeComma(String line, int startIndex) {
+//        int maxIndex = line.indexOf("\"", startIndex + 1);
+//        int index = line.indexOf(",", startIndex);
+//        if (index < maxIndex && index != -1) {
+//            line = line.substring(0, index) + line.substring(index + 1, line.length());
+//            line = removeComma(line, index);
+//        }
+//        return line;
+//    }
+
+    private String removeComma(String line) {
+        int index = line.indexOf("\"");
+        if (index != -1) {
+            int index2 = line.indexOf("\"", index + 1);
+            return line.substring(0, line.indexOf("\""))
+                    + line.substring(index, index2).replace(",", "")
+                    + line.substring(index2);
         }
         return line;
+
     }
 
     public double getDemVotes() {
