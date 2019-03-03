@@ -18,7 +18,7 @@ public class Utils {
         return output.toString();
     }
 
-    private ArrayList<ElectionResult> parse2016PresidentialResults(String file){
+    public ArrayList<ElectionResult> parse2016PresidentialResults(String file){
         String[] data = file.split("\n");
         ArrayList<ElectionResult> results = new ArrayList<>();
         for (String line : data){
