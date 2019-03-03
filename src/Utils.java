@@ -19,6 +19,9 @@ public class Utils {
     }
 
     public static ArrayList<ElectionResult> parse2016PresidentialResults(String file){
+        if (file.indexOf(",") == 0) {
+            file = file.substring(file.indexOf("\n") + 1); // skips the first line
+        }
         String[] data = file.split("\n");
         ArrayList<ElectionResult> results = new ArrayList<>();
         for (String line : data){
