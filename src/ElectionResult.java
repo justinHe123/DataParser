@@ -24,7 +24,7 @@ public class ElectionResult {
     private String removeComma(String line, int startIndex) {
         int maxIndex = line.indexOf("\"", startIndex + 1);
         int index = line.indexOf(",", startIndex);
-        if (index < maxIndex) {
+        if (index < maxIndex && index != -1) {
             line = line.substring(0, index) + line.substring(index + 1, line.length());
             line = removeComma(line, index);
         }
