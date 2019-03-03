@@ -30,4 +30,85 @@ public class ElectionResult{
         }
         return line;
     }
+
+    public double getDemVotes(){
+        return demVotes;
+    }
+
+    public void setDemVotes(double votes){
+        demVotes = votes;
+    }
+
+    public double getGopVotes(){
+        return gopVotes;
+    }
+
+    public void setGopVotes(double votes){
+        gopVotes = votes;
+    }
+
+    public double getTotalVotes(){
+        return totalVotes;
+    }
+
+    public void setTotalVotes(double votes){
+        totalVotes = votes;
+    }
+
+    public double getPercentDem(){
+        return percentDem;
+    }
+
+    public void setPercentDem(double percent){
+        percentDem = percent;
+    }
+
+    public double getPercentGop(){
+        return percentGop;
+    }
+
+    public void setPercentGop(double percent){
+        percentGop = percent;
+    }
+
+    public double getPointDiff(){
+        return pointDiff;
+    }
+
+    public void setPointDiff(double diff){
+        pointDiff = diff;
+    }
+
+    public Double getPointDiffPercent(){
+        return pointDiffPercent;
+    }
+
+    public void setPointDiffPercent(double percent){
+        pointDiffPercent = percent;
+    }
+
+    public String getStateAbbr(){
+        return stateAbbr;
+    }
+
+    public void setStateAbbr(String abbr){
+        stateAbbr = abbr;
+    }
+
+    public String getCountyName(){
+        return countyName;
+    }
+
+    public void setCountyName(String name){
+        countyName = name;
+    }
+
+    public String getCombinedFips(){
+        return combinedFips;
+    }
+
+    public void setCombinedFips(String fips){
+        combinedFips = fips;
+    }
+
 }
