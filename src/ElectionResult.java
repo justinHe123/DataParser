@@ -3,9 +3,7 @@ public class ElectionResult {
     private String stateAbbr, countyName, combinedFips;
 
     public ElectionResult(String line) {
-        line = this.removeComma(line);
-        line = line.replace("\"", "");
-        String[] vals = line.split(",");
+        String[] vals = formatData(line);
         demVotes = Double.parseDouble(vals[1]);
         gopVotes = Double.parseDouble(vals[2]);
         totalVotes = Double.parseDouble(vals[3]);
@@ -18,7 +16,7 @@ public class ElectionResult {
         combinedFips = vals[10];
     }
 
-//    VER 1: Requires initial input of the first quotation mark index
+//    OLD: Requires initial input of the first quotation mark index
 //    private String removeComma(String line, int startIndex) {
 //        int maxIndex = line.indexOf("\"", startIndex + 1);
 //        int index = line.indexOf(",", startIndex);
@@ -29,15 +27,15 @@ public class ElectionResult {
 //        return line;
 //    }
 
-    private String removeComma(String line) {
+    private String[] formatData(String line) {
         int index = line.indexOf("\"");
         if (index != -1) {
             int index2 = line.indexOf("\"", index + 1);
-            return line.substring(0, line.indexOf("\""))
+            line = line.substring(0, line.indexOf("\""))
                     + line.substring(index, index2).replace(",", "")
                     + line.substring(index2);
         }
-        return line;
+        return line.replace("\"", "").split(",");
 
     }
 
