@@ -1,10 +1,17 @@
-import java.util.List;
+import java.util.*;
 
 public class State {
     private String name;
     private List<County> counties;
 
+    public State(String name) {
+        this.name = name;
+        counties = new ArrayList<>();
+    }
 
+    public void addCounty(County county){
+        counties.add(county);
+    }
 
     public String getName() {
         return name;
