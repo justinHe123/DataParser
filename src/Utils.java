@@ -51,9 +51,13 @@ public class Utils {
     }
 
     public static void addElection2016(DataManager data, String[] vals) {
-        Election2016 election = createElection2016(vals);
-        County county = findCounty(data, vals, 8, 10, 9);
-        county.setElec2016(election);
+        try {
+            Election2016 election = createElection2016(vals);
+            County county = findCounty(data, vals, 8, 10, 9);
+            county.setElec2016(election);
+        } catch (Exception e){
+            System.err.println("Invalid format: " + Arrays.toString(vals));
+        }
     }
 
     public static Election2016 createElection2016(String[] vals) {
@@ -80,7 +84,7 @@ public class Utils {
             County county = findCounty(data, vals, 1, 0, 2);
             county.setEduc2016(education);
         } catch (Exception e){
-            System.out.println("Invalid format");
+            System.err.println("Invalid format: " + Arrays.toString(vals));
         }
     }
 
@@ -108,7 +112,7 @@ public class Utils {
             County county = findCounty(data, vals, 1, 0, 2);
             county.setEmploy2016(employment);
         } catch (Exception e){
-            System.out.println("Invalid format");
+            System.err.println("Invalid format: " + Arrays.toString(vals));
         }
     }
 
