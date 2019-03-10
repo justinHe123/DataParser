@@ -34,7 +34,6 @@ public class Utils {
         String[] employmentData = readFileAsString("data/Unemployment.csv").split("\n");
         for (int i = 8; i < employmentData.length; i++) {
             String[] vals = formatData(employmentData[i]).split(",");
-            System.out.println(Arrays.toString(vals));
             addEmployment2016(data, vals);
         }
 
@@ -53,24 +52,7 @@ public class Utils {
 
     public static void addElection2016(DataManager data, String[] vals) {
         Election2016 election = createElection2016(vals);
-
         County county = findCounty(data, vals, 8, 10, 9);
-//        String stateName = vals[8];
-//        int stateIndex = data.stateIndex(stateName);
-//        State state;
-//        if (stateIndex == -1) {
-//            state = new State(stateName);
-//            data.add(state);
-//        } else state = data.getStates().get(stateIndex);
-//
-//        int fips = Integer.parseInt(vals[10]);
-//        int countyIndex = state.countyIndex(fips);
-//        County county;
-//        if (countyIndex == -1) {
-//            String countyName = vals[9];
-//            county = new County(countyName, fips);
-//        } else county = state.getCounties().get(countyIndex);
-
         county.setElec2016(election);
     }
 
@@ -95,24 +77,7 @@ public class Utils {
     public static void addEducation2016(DataManager data, String[] vals) {
         try {
             Education2016 education = createEducation2016(vals);
-
             County county = findCounty(data, vals, 1, 0, 2);
-//            String stateName = vals[1];
-//            int stateIndex = data.stateIndex(stateName);
-//            State state;
-//            if (stateIndex == -1) {
-//                state = new State(stateName);
-//                data.add(state);
-//            } else state = data.getStates().get(stateIndex);
-//
-//            int fips = Integer.parseInt(vals[0]);
-//            int countyIndex = state.countyIndex(fips);
-//            County county;
-//            if (countyIndex == -1) {
-//                String countyName = vals[2];
-//                county = new County(countyName, fips);
-//            } else county = state.getCounties().get(countyIndex);
-
             county.setEduc2016(education);
         } catch (Exception e){
             System.out.println("Invalid format");
@@ -140,25 +105,7 @@ public class Utils {
     public static void addEmployment2016(DataManager data, String[] vals) {
         try {
             Employment2016 employment = createEmployment2016(vals);
-
             County county = findCounty(data, vals, 1, 0, 2);
-//            String stateName = vals[1];
-//            int stateIndex = data.stateIndex(stateName);
-//            State state;
-//            if (stateIndex == -1) {
-//                state = new State(stateName);
-//                data.add(state);
-//            } else state = data.getStates().get(stateIndex);
-//
-//            int fips = Integer.parseInt(vals[0]);
-//            int countyIndex = state.countyIndex(fips);
-//            County county;
-//            if (countyIndex == -1) {
-//                String countyName = vals[2];
-//                if (endsInCapital(countyName)) countyName = countyName.substring(0, countyName.length() - 3);
-//                county = new County(countyName, fips);
-//            } else county = state.getCounties().get(countyIndex);
-
             county.setEmploy2016(employment);
         } catch (Exception e){
             System.out.println("Invalid format");
