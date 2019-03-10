@@ -132,10 +132,11 @@ public class Utils {
 
         int fips = Integer.parseInt(vals[fipsIndex]);
         int countyIndex = state.countyIndex(fips);
-        County county;
         if (countyIndex == -1) {
             String countyName = vals[countyNameIndex];
             if (endsInCapital(countyName)) countyName = countyName.substring(0, countyName.length() - 3);
+            County county = new County(countyName, fips);
+            state.add(county);
             return new County(countyName, fips);
         } else return state.getCounties().get(countyIndex);
     }
