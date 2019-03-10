@@ -23,7 +23,7 @@ public class Utils {
         List<State> states = data.getStates();
         String[] electionData = readFileAsString("data/2016_Presidential_Results.csv").split("\n");
         for (int i = 1; i < electionData.length; i++){
-            String[] vals = electionData[i].split(",");
+            String[] vals = formatData(electionData[i]).split(",");
             addElection2016(data, vals);
         }
         String[] educationData = readFileAsString("data/Education.csv").split("\n");
