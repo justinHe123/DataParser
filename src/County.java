@@ -31,7 +31,7 @@ public class County {
         return elec2016;
     }
 
-    public void setVote2016(Election2016 vote2016) {
+    public void setElec2016(Election2016 vote2016) {
         this.elec2016 = vote2016;
     }
 
