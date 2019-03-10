@@ -32,4 +32,8 @@ public class Election2016 {
     public void setTotalVotes(double totalVotes) {
         this.totalVotes = totalVotes;
     }
+
+    public String toString(){
+        return demVotes + "," + gopVotes + "," + totalVotes;
+    }
 }

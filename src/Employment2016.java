@@ -43,4 +43,8 @@ public class Employment2016 {
         this.unemployedPercent = unemployedPercent;
     }
 
+    public String toString(){
+        return totalLaborForce + "," + employedLaborForce + "," + unemployedLaborForce + "," + unemployedPercent;
+    }
+
 }

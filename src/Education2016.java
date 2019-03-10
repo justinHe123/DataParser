@@ -42,4 +42,8 @@ public class Education2016 {
     public void setBachelorsOrMore(double bachelorsOrMore) {
         this.bachelorsOrMore = bachelorsOrMore;
     }
+
+    public String toString(){
+        return noHighSchool + "," + onlyHighSchool + "," + someCollege + "," + bachelorsOrMore;
+    }
 }

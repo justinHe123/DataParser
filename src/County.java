@@ -50,4 +50,8 @@ public class County {
     public void setEmploy2016(Employment2016 employ2016) {
         this.employ2016 = employ2016;
     }
+
+    public String toString(){
+        return fips + "," + name + "," + elec2016.toString() + "," + educ2016.toString() + "," + employ2016.toString();
+    }
 }
