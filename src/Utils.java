@@ -34,6 +34,12 @@ public class Utils {
         String[] employmentData = readFileAsString("data/Unemployment.csv").split("\n");
         for (int i = 8; i < employmentData.length; i++) {
             String[] vals = formatData(employmentData[i]).split(",");
+            System.out.println(Arrays.toString(vals));
+            try {
+                System.out.println(vals[42]);
+            } catch (Exception e){
+                System.err.println("bad");
+            }
             addEmployment2016(data, vals);
         }
 
@@ -110,14 +116,13 @@ public class Utils {
         } catch (Exception e){
             System.out.println("Invalid format");
         }
-
     }
 
     public static Employment2016 createEmployment2016(String[] vals) {
-        int totalLaborForce = Integer.parseInt(vals[42]);
-        int employedLaborForce = Integer.parseInt(vals[43]);
-        int unemployedLaborForce = Integer.parseInt(vals[44]);
-        double unemployedPercent = Double.parseDouble(vals[45]);
+        int totalLaborForce = Integer.parseInt(vals[42].trim());
+        int employedLaborForce = Integer.parseInt(vals[43].trim());
+        int unemployedLaborForce = Integer.parseInt(vals[44].trim());
+        double unemployedPercent = Double.parseDouble(vals[45].trim());
         return new Employment2016(totalLaborForce, employedLaborForce, unemployedLaborForce, unemployedPercent);
     }
 
@@ -137,7 +142,7 @@ public class Utils {
             if (endsInCapital(countyName)) countyName = countyName.substring(0, countyName.length() - 3);
             County county = new County(countyName, fips);
             state.add(county);
-            return new County(countyName, fips);
+            return county;
         } else return state.getCounties().get(countyIndex);
     }
 
