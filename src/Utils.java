@@ -34,12 +34,6 @@ public class Utils {
         String[] employmentData = readFileAsString("data/Unemployment.csv").split("\n");
         for (int i = 8; i < employmentData.length; i++) {
             String[] vals = formatData(employmentData[i]).split(",");
-            System.out.println(Arrays.toString(vals));
-            try {
-                System.out.println(vals[42]);
-            } catch (Exception e){
-                System.err.println("bad");
-            }
             addEmployment2016(data, vals);
         }
 
