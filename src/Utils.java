@@ -163,23 +163,21 @@ public class Utils {
         return new Employment2016(totalLaborForce, employedLaborForce, unemployedLaborForce, unemployedPercent);
     }
 
-
     private static String formatData(String line) {
-        int index = line.indexOf("\"");
-        while (index != -1) {
-            int index2 = line.indexOf("\"", index + 1);
-            line = line.substring(0, line.indexOf("\""))
-                    + line.substring(index, index2).replace(",", "")
-                    + line.substring(index2);
-            index = line.indexOf("\"", index2 + 1);
+        String buildString = "";
+        char[] chars = line.toCharArray();
+        int length = chars.length;
+        boolean inQuotes = false;
+        for (int i = 0; i < length; i++){
+            if (chars[i] == '"') inQuotes = !inQuotes;
+            else if (!(inQuotes && chars[i] == ',')) {
+                buildString += chars[i];
+            }
         }
-        return line.replace("\"", "");
-
+        return buildString;
     }
-
     private static boolean endsInCapital(String s){
         char c = s.charAt(s.length() - 1);
         return c >= 'A' && c <= 'Z';
     }
-
 }
