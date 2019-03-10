@@ -18,20 +18,6 @@ public class Utils {
         return output.toString();
     }
 
-//    OLD
-//    public static ArrayList<ElectionResult> parse2016PresidentialResults(String file){
-//        if (file.indexOf(",") == 0) {
-//            file = file.substring(file.indexOf("\n") + 1); // skips the first line
-//        }
-//        String[] data = file.split("\n");
-//        ArrayList<ElectionResult> results = new ArrayList<>();
-//        for (String line : data){
-//            formatData(line);
-//            results.add(new ElectionResult(line));
-//        }
-//        return results;
-//    }
-
     public static DataManager parseAllData(){
         DataManager data = new DataManager();
         List<State> states = data.getStates();
@@ -75,11 +61,11 @@ public class Utils {
             data.add(state);
         } else state = data.getStates().get(stateIndex);
 
-        String countyName = vals[9];
         int fips = Integer.parseInt(vals[10]);
         int countyIndex = state.countyIndex(fips);
         County county;
         if (countyIndex == -1){
+            String countyName = vals[9];
             county = new County(countyName, fips);
         } else county = state.getCounties().get(countyIndex);
 
@@ -115,11 +101,11 @@ public class Utils {
             data.add(state);
         } else state = data.getStates().get(stateIndex);
 
-        String countyName = vals[2];
         int fips = Integer.parseInt(vals[0]);
         int countyIndex = state.countyIndex(fips);
         County county;
         if (countyIndex == -1){
+            String countyName = vals[2];
             county = new County(countyName, fips);
         } else county = state.getCounties().get(countyIndex);
 
@@ -155,12 +141,12 @@ public class Utils {
             data.add(state);
         } else state = data.getStates().get(stateIndex);
 
-        String countyName = vals[2]; //formatting for this is comparable to the 9th circle of hell
-        if (endsInCapital(countyName)) countyName = countyName.substring(0, countyName.length() - 3);
         int fips = Integer.parseInt(vals[0]);
         int countyIndex = state.countyIndex(fips);
         County county;
         if (countyIndex == -1){
+            String countyName = vals[2];
+            if (endsInCapital(countyName)) countyName = countyName.substring(0, countyName.length() - 3);
             county = new County(countyName, fips);
         } else county = state.getCounties().get(countyIndex);
 
