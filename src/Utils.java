@@ -113,10 +113,10 @@ public class Utils {
     }
 
     public static Education2016 createEducation2016(String[] vals){
-        double noHighSchool = Double.parseDouble(vals[44]);
-        double onlyHighSchool = Double.parseDouble(vals[45]);
-        double someCollege = Double.parseDouble(vals[46]);
-        double bachelorsOrMore = Double.parseDouble(vals[47]);
+        double noHighSchool = Double.parseDouble(vals[43]);
+        double onlyHighSchool = Double.parseDouble(vals[44]);
+        double someCollege = Double.parseDouble(vals[45]);
+        double bachelorsOrMore = Double.parseDouble(vals[46]);
         return new Education2016(noHighSchool,onlyHighSchool,someCollege,bachelorsOrMore);
     }
 
