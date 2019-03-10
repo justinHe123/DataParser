@@ -9,8 +9,32 @@ public class State {
         counties = new ArrayList<>();
     }
 
-    public void addCounty(County county){
+    public int countyIndex(String name){
+        for(int i = 0; i < counties.size(); i++){
+            County county = counties.get(i);
+            if (county.getName().equals(name)) return i;
+        }
+        return -1;
+    }
+
+    public int countyIndex(int fips){
+        for(int i = 0; i < counties.size(); i++){
+            County county = counties.get(i);
+            if (county.getFips() == fips) return i;
+        }
+        return -1;
+    }
+
+    public void add(County county){
         counties.add(county);
+    }
+
+    public void removeCounty(County county){
+        counties.remove(county);
+    }
+
+    public County removeCounty(int index){
+        return counties.remove(index);
     }
 
     public String getName() {
