@@ -54,7 +54,7 @@ public class Utils {
 
     private static void parseEducationData(DataManager data) {
         String[] educationData = readFileAsString("data/Education.csv").split("\n");
-        for (int i = 5; i < educationData.length; i++) {
+        for (int i = 5; i < educationData.length - 10; i++) {
             String[] vals = formatData(educationData[i]).split(",");
             addEducation2016(data, vals);
         }
