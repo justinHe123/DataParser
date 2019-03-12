@@ -105,7 +105,7 @@ public class Utils {
     }
 
     private static County findCounty(DataManager data, String[] vals, int stateNameIndex, int fipsIndex, int countyNameIndex){
-        String stateName = vals[stateNameIndex];
+        String stateName = vals[stateNameIndex].toUpperCase();
         int stateIndex = data.stateIndex(stateName);
         State state;
         if (stateIndex == -1) {
