@@ -1,39 +1,29 @@
 public class Election2016 {
-    private double demVotes;
-    private double gopVotes;
-    private double totalVotes;
+    private double perDem;
+    private double perGop;
 
-    public Election2016(double demVotes, double gopVotes, double totalVotes) {
-        this.demVotes = demVotes;
-        this.gopVotes = gopVotes;
-        this.totalVotes = totalVotes;
+    public Election2016(double perDem, double perGop) {
+        this.perDem = perDem;
+        this.perGop = perGop;
     }
 
-    public double getDemVotes() {
-        return demVotes;
+    public double getPerDem() {
+        return perDem;
     }
 
-    public void setDemVotes(double demVotes) {
-        this.demVotes = demVotes;
+    public void setPerDem(double perDem) {
+        this.perDem = perDem;
     }
 
-    public double getGopVotes() {
-        return gopVotes;
+    public double getPerGop() {
+        return perGop;
     }
 
-    public void setGopVotes(double gopVotes) {
-        this.gopVotes = gopVotes;
-    }
-
-    public double getTotalVotes() {
-        return totalVotes;
-    }
-
-    public void setTotalVotes(double totalVotes) {
-        this.totalVotes = totalVotes;
+    public void setPerGop(double perGop) {
+        this.perGop = perGop;
     }
 
     public String toString(){
-        return demVotes + "," + gopVotes + "," + totalVotes;
+        return perDem + "," + perGop;
     }
 }

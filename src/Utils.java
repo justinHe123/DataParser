@@ -45,10 +45,9 @@ public class Utils {
     }
 
     private static Election2016 createElection2016(String[] vals) {
-        double demVotes = Double.parseDouble(vals[1]);
-        double gopVotes = Double.parseDouble(vals[2]);
-        double totalVotes = Double.parseDouble(vals[3]);
-        return new Election2016(demVotes, gopVotes, totalVotes);
+        double perDem = Double.parseDouble(vals[4]);
+        double perGop = Double.parseDouble(vals[5]);
+        return new Election2016(perDem, perGop);
 
     }
 
@@ -117,7 +116,7 @@ public class Utils {
         int countyIndex = state.countyIndex(fips);
         if (countyIndex == -1) {
             String countyName = vals[countyNameIndex];
-            if (endsInCapital(countyName)) countyName = countyName.substring(0, countyName.length() - 3);
+            countyName = cleanCountyName(countyName);
             County county = new County(countyName, fips);
             state.add(county);
             return county;
@@ -141,5 +140,13 @@ public class Utils {
     private static boolean endsInCapital(String s) {
         char c = s.charAt(s.length() - 1);
         return c >= 'A' && c <= 'Z';
+    }
+
+    private static String cleanCountyName(String s){
+        if (endsInCapital(s)) s = s.substring(0, s.length() - 3);
+        int countyEndIndex = s.length() - 7;
+        if (countyEndIndex > 0 && s.substring(countyEndIndex, s.length()).equals(" County")) s = s.substring(0, countyEndIndex);
+        return s;
+
     }
 }
