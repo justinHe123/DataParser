@@ -1,19 +1,18 @@
 public class Election2016 {
-    private double perDem;
+//    private double perDem;
     private double perGop;
 
-    public Election2016(double perDem, double perGop) {
-        this.perDem = perDem;
+    public Election2016(double perGop) {
         this.perGop = perGop;
     }
 
-    public double getPerDem() {
-        return perDem;
-    }
-
-    public void setPerDem(double perDem) {
-        this.perDem = perDem;
-    }
+//    public double getPerDem() {
+//        return perDem;
+//    }
+//
+//    public void setPerDem(double perDem) {
+//        this.perDem = perDem;
+//    }
 
     public double getPerGop() {
         return perGop;
@@ -24,6 +23,6 @@ public class Election2016 {
     }
 
     public String toString(){
-        return perDem + "," + perGop;
+        return "" + perGop;
     }
 }

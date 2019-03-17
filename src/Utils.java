@@ -47,9 +47,9 @@ public class Utils {
     }
 
     private static Election2016 createElection2016(String[] vals) {
-        double perDem = Double.parseDouble(vals[4]);
-        double perGop = Double.parseDouble(vals[5]);
-        return new Election2016(perDem, perGop);
+//        double perDem = Double.parseDouble(vals[4]);
+        double perGop = formatElectionPercent(Double.parseDouble(vals[5]));
+        return new Election2016(perGop);
 
     }
 
@@ -73,10 +73,10 @@ public class Utils {
 
     private static Education2016 createEducation2016(String[] vals) {
         double noHighSchool = Double.parseDouble(vals[43]);
-        double onlyHighSchool = Double.parseDouble(vals[44]);
-        double someCollege = Double.parseDouble(vals[45]);
-        double bachelorsOrMore = Double.parseDouble(vals[46]);
-        return new Education2016(noHighSchool, onlyHighSchool, someCollege, bachelorsOrMore);
+//        double onlyHighSchool = Double.parseDouble(vals[44]);
+//        double someCollege = Double.parseDouble(vals[45]);
+//        double bachelorsOrMore = Double.parseDouble(vals[46]);
+        return new Education2016(noHighSchool);
     }
 
 //    private static void parseEmploymentData(DataManager data) {
@@ -116,8 +116,9 @@ public class Utils {
     private static void addTrump2016(DataManager data, String[] vals) {
         try {
             String city = vals[1];
+            int visitors = Integer.parseInt(vals[4]);
             County county = findCountyByName(data, vals, 2, 6);
-            county.getTrump2016().addCity(city);
+            county.getTrump2016().addRally(new Rally(city, visitors));
         } catch (Exception e){
             System.err.println("Invalid format: " + Arrays.toString(vals));
         }
@@ -184,5 +185,11 @@ public class Utils {
         if (countyEndIndex > 0 && s.substring(countyEndIndex, s.length()).equals(" County")) s = s.substring(0, countyEndIndex);
         return s.trim();
 
+    }
+
+    private static double formatElectionPercent(Double d){
+        d = d * 100;
+        String s = String.format("%,.1f", d);
+        return Double.parseDouble(s);
     }
 }

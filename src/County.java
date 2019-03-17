@@ -11,8 +11,8 @@ public class County {
     public County(String name, int fips) {
         this.name = name;
         this.fips = fips;
-        elec2016 = new Election2016(-1, -1);
-        educ2016 = new Education2016(-1, -1, -1, -1);
+        elec2016 = new Election2016(-1);
+        educ2016 = new Education2016(-1);
 //        employ2016 = new Employment2016(-1, -1, -1, -1);
         trump2016 = new Trump2016();
     }
@@ -20,8 +20,8 @@ public class County {
     public County(String name) {
         this.name = name;
         fips = -1;
-        elec2016 = new Election2016(-1, -1);
-        educ2016 = new Education2016(-1, -1, -1, -1);
+        elec2016 = new Election2016(-1);
+        educ2016 = new Education2016(-1);
         trump2016 = new Trump2016();
     }
 
