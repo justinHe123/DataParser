@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class County {
     private String name;
     private int fips;
@@ -41,7 +39,7 @@ public class County {
         this.fips = fips;
     }
 
-    public Election2016 getVote2016() {
+    public Election2016 getElec2016() {
         return elec2016;
     }
 
