@@ -182,7 +182,7 @@ public class Utils {
         if (endsInCapital(s)) s = s.substring(0, s.length() - 3);
         int countyEndIndex = s.length() - 7;
         if (countyEndIndex > 0 && s.substring(countyEndIndex, s.length()).equals(" County")) s = s.substring(0, countyEndIndex);
-        return s;
+        return s.trim();
 
     }
 }
