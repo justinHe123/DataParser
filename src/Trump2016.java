@@ -16,11 +16,11 @@ public class Trump2016 {
     }
 
     public String toString(){
-        String s = "{";
+        String s = "\"";
         for (Rally rally : rallies){
             s += rally.toString() + ",";
         }
         if (!s.equals("{")) s = s.substring(0, s.length() - 1);
-        return s + "}";
+        return s + "\"";
     }
 }
