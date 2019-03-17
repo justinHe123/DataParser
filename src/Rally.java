@@ -1,8 +1,8 @@
 public class Rally {
     private String city;
-    private int visitors;
+    private String visitors;
 
-    public Rally(String city, int visitors) {
+    public Rally(String city, String visitors) {
         this.city = city;
         this.visitors = visitors;
     }
