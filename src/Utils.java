@@ -115,13 +115,18 @@ public class Utils {
 
     private static void addTrump2016(DataManager data, String[] vals) {
         try {
-            String city = vals[1];
-            int visitors = Integer.parseInt(vals[4]);
+            Rally rally = createRally(vals);
             County county = findCountyByName(data, vals, 2, 6);
-            county.getTrump2016().addRally(new Rally(city, visitors));
+            county.getTrump2016().addRally(rally);
         } catch (Exception e){
             System.err.println("Invalid format: " + Arrays.toString(vals));
         }
+    }
+
+    private static Rally createRally(String[] vals){
+        String city = vals[1];
+        String visitors = vals[4];
+        return new Rally(city, visitors);
     }
 
     private static County findCountyByName(DataManager data, String[] vals, int stateNameIndex, int countyNameIndex){
