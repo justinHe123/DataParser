@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.*;
 
@@ -20,13 +21,14 @@ public class Utils {
 
     public static DataManager parseAllData() {
         DataManager data = new DataManager();
-        parseElectionResults(data);
+        parseElectionData(data);
         parseEducationData(data);
-        parseEmploymentData(data);
+//        parseEmploymentData(data);
+        parseTrumpData(data);
         return data;
     }
 
-    private static void parseElectionResults(DataManager data) {
+    private static void parseElectionData(DataManager data) {
         String[] electionData = readFileAsString("data/2016_Presidential_Results.csv").split("\n");
         for (int i = 1; i < electionData.length; i++) {
             String[] vals = formatData(electionData[i]).split(",");
@@ -77,33 +79,62 @@ public class Utils {
         return new Education2016(noHighSchool, onlyHighSchool, someCollege, bachelorsOrMore);
     }
 
-    private static void parseEmploymentData(DataManager data) {
-        String[] employmentData = readFileAsString("data/Unemployment.csv").split("\n");
-        for (int i = 8; i < employmentData.length; i++) {
-            String[] vals = formatData(employmentData[i]).split(",");
-            addEmployment2016(data, vals);
+//    private static void parseEmploymentData(DataManager data) {
+//        String[] employmentData = readFileAsString("data/Unemployment.csv").split("\n");
+//        for (int i = 8; i < employmentData.length; i++) {
+//            String[] vals = formatData(employmentData[i]).split(",");
+//            addEmployment2016(data, vals);
+//        }
+//    }
+//
+//    private static void addEmployment2016(DataManager data, String[] vals) {
+//        try {
+//            Employment2016 employment = createEmployment2016(vals);
+//            County county = findCounty(data, vals, 1, 0, 2);
+//            county.setEmploy2016(employment);
+//        } catch (Exception e){
+//            System.err.println("Invalid format: " + Arrays.toString(vals));
+//        }
+//    }
+//
+//    private static Employment2016 createEmployment2016(String[] vals) {
+//        int totalLaborForce = Integer.parseInt(vals[42].trim());
+//        int employedLaborForce = Integer.parseInt(vals[43].trim());
+//        int unemployedLaborForce = Integer.parseInt(vals[44].trim());
+//        double unemployedPercent = Double.parseDouble(vals[45].trim());
+//        return new Employment2016(totalLaborForce, employedLaborForce, unemployedLaborForce, unemployedPercent);
+//    }
+
+    private static void parseTrumpData(DataManager data){
+        String[] trumpData = Utils.readFileAsString("data/Trump_Rallies.csv").split("\n");
+        for (int i = 1; i < trumpData.length; i++){
+            String[] vals = formatData(trumpData[i]).split(",");
+            addTrump2016(data, vals);
         }
     }
 
-    private static void addEmployment2016(DataManager data, String[] vals) {
+    private static void addTrump2016(DataManager data, String[] vals) {
         try {
-            Employment2016 employment = createEmployment2016(vals);
-            County county = findCounty(data, vals, 1, 0, 2);
-            county.setEmploy2016(employment);
+            String city = vals[1];
+            County county = findCountyByName(data, vals, 2, 6);
+            county.getTrump2016().addCity(city);
         } catch (Exception e){
             System.err.println("Invalid format: " + Arrays.toString(vals));
         }
     }
 
-    private static Employment2016 createEmployment2016(String[] vals) {
-        int totalLaborForce = Integer.parseInt(vals[42].trim());
-        int employedLaborForce = Integer.parseInt(vals[43].trim());
-        int unemployedLaborForce = Integer.parseInt(vals[44].trim());
-        double unemployedPercent = Double.parseDouble(vals[45].trim());
-        return new Employment2016(totalLaborForce, employedLaborForce, unemployedLaborForce, unemployedPercent);
+    private static County findCountyByName(DataManager data, String[] vals, int stateNameIndex, int countyNameIndex){
+        State state = findState(data, vals, stateNameIndex);
+        String countyName = cleanCountyName(vals[countyNameIndex]);
+        int countyIndex = state.countyIndex(countyName);
+        if (countyIndex == -1){
+            County county = new County(countyName);
+            state.add(county);
+            return county;
+        } else return state.getCounties().get(countyIndex);
     }
 
-    private static County findCounty(DataManager data, String[] vals, int stateNameIndex, int fipsIndex, int countyNameIndex){
+    private static State findState(DataManager data, String[] vals, int stateNameIndex){
         String stateName = vals[stateNameIndex].toUpperCase();
         int stateIndex = data.stateIndex(stateName);
         State state;
@@ -111,6 +142,11 @@ public class Utils {
             state = new State(stateName);
             data.add(state);
         } else state = data.getStates().get(stateIndex);
+        return state;
+    }
+
+    private static County findCounty(DataManager data, String[] vals, int stateNameIndex, int fipsIndex, int countyNameIndex){
+        State state = findState(data, vals, stateNameIndex);
 
         int fips = Integer.parseInt(vals[fipsIndex]);
         int countyIndex = state.countyIndex(fips);
