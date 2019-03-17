@@ -15,6 +15,14 @@ public class Rally {
         this.city = city;
     }
 
+    public String getVisitors() {
+        return visitors;
+    }
+
+    public void setVisitors(String visitors) {
+        this.visitors = visitors;
+    }
+
     public String toString(){
         return "[" + city + "," + visitors + "]";
     }
