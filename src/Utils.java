@@ -1,4 +1,3 @@
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.*;
 
@@ -116,6 +115,7 @@ public class Utils {
     private static void addTrump2016(DataManager data, String[] vals) {
         try {
             Rally rally = createRally(vals);
+            if (rally.getVisitors().equals("")) throw new NumberFormatException();
             County county = findCountyByName(data, vals, 2, 6);
             county.getTrump2016().addRally(rally);
         } catch (Exception e){
