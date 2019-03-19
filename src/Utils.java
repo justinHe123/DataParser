@@ -47,7 +47,7 @@ public class Utils {
 
     private static Election2016 createElection2016(String[] vals) {
 //        double perDem = Double.parseDouble(vals[4]);
-        double perGop = formatElectionPercent(Double.parseDouble(vals[5]));
+        double perGop = decimalToPercent(Double.parseDouble(vals[5]));
         return new Election2016(perGop);
 
     }
@@ -192,7 +192,7 @@ public class Utils {
 
     }
 
-    private static double formatElectionPercent(Double d){
+    private static double decimalToPercent(Double d){
         d = d * 100;
         String s = String.format("%,.1f", d);
         return Double.parseDouble(s);
