@@ -1,10 +1,10 @@
 public class Rally {
     private String city;
-    private String visitors;
+    private String numVisitors;
 
     public Rally(String city, String visitors) {
         this.city = city;
-        this.visitors = visitors;
+        this.numVisitors = numVisitors;
     }
 
     public String getCity() {
@@ -15,15 +15,15 @@ public class Rally {
         this.city = city;
     }
 
-    public String getVisitors() {
-        return visitors;
+    public String getNumVisitors() {
+        return numVisitors;
     }
 
-    public void setVisitors(String visitors) {
-        this.visitors = visitors;
+    public void setNumVisitors(String numVisitors) {
+        this.numVisitors = numVisitors;
     }
 
     public String toString(){
-        return "[" + city + "," + visitors + "]";
+        return "[" + city + "," + numVisitors + "]";
     }
 }

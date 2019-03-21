@@ -1,5 +1,5 @@
 public class Education2016 {
-    private double noHighSchool;
+    private double perNoHighSchool;
 //    private double onlyHighSchool;
 //    private double someCollege;
 //    private double bachelorsOrMore;
@@ -11,16 +11,16 @@ public class Education2016 {
 //        this.bachelorsOrMore = bachelorsOrMore;
 //    }
 
-    public Education2016 (double noHighSchool){
-        this.noHighSchool = noHighSchool;
+    public Education2016 (double perNoHighSchool){
+        this.perNoHighSchool = perNoHighSchool;
     }
 
-    public double getNoHighSchool() {
-        return noHighSchool;
+    public double getPerNoHighSchool() {
+        return perNoHighSchool;
     }
 
-    public void setNoHighSchool(double noHighSchool) {
-        this.noHighSchool = noHighSchool;
+    public void setPerNoHighSchool(double perNoHighSchool) {
+        this.perNoHighSchool = perNoHighSchool;
     }
 
 //    public double getOnlyHighSchool() {
@@ -52,6 +52,6 @@ public class Education2016 {
 //    }
 
     public String toString(){
-        return "" + noHighSchool;
+        return "" + perNoHighSchool;
     }
 }
