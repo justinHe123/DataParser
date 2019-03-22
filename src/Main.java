@@ -34,7 +34,7 @@ public class Main {
             for (County county : state.getCounties()){
                 boolean complete = true;
                 if (county.getTrump2016().getRallies().size() == 0) complete = false;
-                else if (county.getEduc2016().getNoHighSchool() == -1) complete = false;
+                else if (county.getEduc2016().getPerNoHighSchool() == -1) complete = false;
                 else if (county.getElec2016().getPerGop() == -1) complete = false;
                 if (complete){
                     newState.add(county);
@@ -54,7 +54,7 @@ public class Main {
             above.add(state1);
             below.add(state2);
             for (County county : state.getCounties()) {
-                if (county.getEduc2016().getNoHighSchool() > NO_HS_AVG) state1.add(county);
+                if (county.getEduc2016().getPerNoHighSchool() > NO_HS_AVG) state1.add(county);
                 else state2.add(county);
             }
         }
